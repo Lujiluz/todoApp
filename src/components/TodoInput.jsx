@@ -3,7 +3,7 @@ import logo from '../assets/logo.png';
 export default function TodoInput() {
   return (
     <>
-      <div className="lg:flex">
+      <div className="lg:flex lg:mb-8">
         <div className="flex items-center justify-center">
           <img src={logo} alt="logo" className="w-1/3 h-auto lg:w-[50%] md:w-[30%]" />
         </div>
