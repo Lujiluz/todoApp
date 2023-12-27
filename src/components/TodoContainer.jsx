@@ -1,6 +1,7 @@
 import TodoItem from './TodoItem';
 
-export default function TodoContainer() {
+export default function TodoContainer(allTodos) {
+  let todos = [...allTodos.allTodos];
   return (
     <>
       <div className="w-full p-6 rounded-md bg-[#303030]">
@@ -16,7 +17,9 @@ export default function TodoContainer() {
         <button type="button" className="bg-[#D4C321] text-black px-1 rounded-sm shadow-inner hover:bg-[#9B8E14] transition">
           Clear All
         </button>
-        <TodoItem />
+        {todos.map((todo) => {
+          return <TodoItem task={todo.task} key={todo.id} />;
+        })}
       </div>
     </>
   );

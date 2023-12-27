@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import logo from '../assets/logo.png';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function TodoInput() {
-  const [allTodos, setAllTodos] = useState([]);
+// eslint-disable-next-line react/prop-types
+export default function TodoInput({ addTask }) {
   const [newTodo, setNewTodo] = useState('');
 
-  const handleAddNewTodo = () => {
+  const handleAddNewTodo = (e) => {
     if (newTodo === '') {
-      console.log('woy, masih kosong!');
+      toast.error('Eh, sorry ini gaboleh kosong!', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+        closeOnClick: true,
+        theme: 'dark',
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
+      });
     } else {
-      let newTodoObj = {
-        todo: newTodo,
-        completed: false,
-      };
-      let updatedTodoArr = [...allTodos];
-      updatedTodoArr.push(newTodoObj);
-      setAllTodos(updatedTodoArr);
-      localStorage.setItem('todolist', JSON.stringify(updatedTodoArr));
-      localStorage.clear;
+      e.preventDefault();
+      addTask(newTodo);
       setNewTodo('');
     }
   };
@@ -28,7 +30,7 @@ export default function TodoInput() {
         <div className="flex items-center justify-center">
           <img src={logo} alt="logo" className="w-1/3 h-auto lg:w-[50%] md:w-[25%]" />
         </div>
-        <div className="flex items-center justify-center m-10 lg:w-[60%] lg:m-5">
+        <form onSubmit={handleAddNewTodo} className="flex items-center justify-center m-10 lg:w-[60%] lg:m-5">
           <input
             type="text"
             value={newTodo}
@@ -41,7 +43,8 @@ export default function TodoInput() {
           <button type="button" onClick={handleAddNewTodo} className="bg-[#D4C321] text-black p-2 rounded-sm shadow-inner hover:bg-[#9B8E14] transition">
             Submit
           </button>
-        </div>
+          <ToastContainer />
+        </form>
       </div>
     </>
   );

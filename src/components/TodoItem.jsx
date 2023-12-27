@@ -2,7 +2,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { RiEditBoxFill } from 'react-icons/ri';
 
-export default function TodoItem() {
+export default function TodoItem(task) {
   return (
     <>
       <ul className="w-full  mt-3">
@@ -11,7 +11,7 @@ export default function TodoItem() {
             <FaCheckCircle title="Completed?" className="text-[#D4C321] transition ease-in transform hover:scale-110" />
           </button>
           <div className="w-full mx-2">
-            <p>Go to gym</p>
+            <p>{task.task}</p>
           </div>
           <button type="button" className="mr-3">
             <RiEditBoxFill title="Edit?" className="text-[#F27400] transition ease-in transform hover:scale-110" />
