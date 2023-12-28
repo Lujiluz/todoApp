@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './app.css';
 import TodoContainer from './components/TodoContainer';
 import TodoInput from './components/TodoInput';
 export default function App() {
   const [allTodos, setAllTodos] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem('todolist', JSON.stringify(allTodos));
+  }, [allTodos]);
 
   const addTask = (newTask) => {
     let objTask = {
