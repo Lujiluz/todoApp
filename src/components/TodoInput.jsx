@@ -9,15 +9,26 @@ export default function TodoInput({ addTask }) {
 
   const handleAddNewTodo = (e) => {
     if (newTodo === '') {
-      toast.error('Eh, sorry ini gaboleh kosong!', {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 3000,
+      toast.error('Eh, sorry ini gaboleh kosong! 🙏', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
         closeOnClick: true,
         theme: 'dark',
         pauseOnFocusLoss: false,
         pauseOnHover: false,
+        hideProgressBar: true,
       });
+      e.preventDefault();
     } else {
+      toast.success('Data berhasil disimpan! 👌', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        closeOnClick: true,
+        theme: 'dark',
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
+        hideProgressBar: true,
+      });
       e.preventDefault();
       addTask(newTodo);
       setNewTodo('');
