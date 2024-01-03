@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import TodoItem from './TodoItem';
 import { toast } from 'react-toastify';
 
 export default function TodoContainer(allTodos) {
+  console.log(allTodos.allTodos.length);
   const handleClearAll = () => {
     toast.warn(
       <div className="text-center">
@@ -30,6 +32,7 @@ export default function TodoContainer(allTodos) {
 
   const handleYes = () => {
     localStorage.clear();
+    // setAllTodos.setAllTodos([]);
     location.reload();
   };
   const handleNo = () => {
@@ -58,9 +61,11 @@ export default function TodoContainer(allTodos) {
         <button type="button" onClick={handleClearAll} className="bg-[#D4C321] text-black px-1 rounded-sm shadow-inner hover:bg-[#9B8E14] transition">
           Clear All
         </button>
-        {allTodos.allTodos.map((todo) => {
-          return <TodoItem task={todo.task} key={todo.id} />;
-        })}
+        {allTodos.allTodos.length !== 0
+          ? allTodos.allTodos.map((todo) => {
+              return <TodoItem key={todo.id} task={todo.task} />;
+            })
+          : null}
       </div>
     </>
   );
