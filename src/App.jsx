@@ -7,14 +7,15 @@ import TodoInput from './components/TodoInput';
 const getDataFromLocalStorage = () => {
   let storedData = JSON.parse(localStorage.getItem('todolist'));
 
-  if (storedData) return storedData;
+  if (storedData) return storedData.filter((data) => !data.completed);
   return [];
 };
 
 export default function App() {
   const [allTodos, setAllTodos] = useState(getDataFromLocalStorage);
 
-  // usEffect buat add data ke local Storage
+  // console.log(allTodos);
+  // useEffect buat add data ke local Storage
   useEffect(() => {
     localStorage.setItem('todolist', JSON.stringify(allTodos));
   }, [allTodos]);

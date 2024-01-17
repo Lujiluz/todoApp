@@ -1,7 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { RiEditBoxFill } from 'react-icons/ri';
-import { toast } from 'react-toastify';
 
 // eslint-disable-next-line react/prop-types
 export default function TodoItem({ id, task }) {
@@ -9,15 +8,17 @@ export default function TodoItem({ id, task }) {
     const items = JSON.parse(localStorage.getItem('todolist'));
     const filteredItems = items.filter((item) => item.id !== id);
     localStorage.setItem('todolist', JSON.stringify(filteredItems));
-    toast.success('Data berhasil dihapus! 👌', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1000,
-      closeOnClick: true,
-      theme: 'dark',
-      pauseOnFocusLoss: false,
-      pauseOnHover: false,
-      hideProgressBar: true,
+    location.reload();
+  };
+
+  const handleCompleted = () => {
+    const items = JSON.parse(localStorage.getItem('todolist'));
+    items.map((item) => {
+      if (item.id === id) {
+        item.completed = true;
+      }
     });
+    localStorage.setItem('todolist', JSON.stringify(items));
     location.reload();
   };
   return (
@@ -25,7 +26,7 @@ export default function TodoItem({ id, task }) {
       <ul className="w-full  mt-3">
         <li className="flex bg-[#2B2B2B] p-2 mb-3 rounded-sm">
           <button type="button" className="mr-3">
-            <FaCheckCircle title="Completed?" className="text-[#D4C321] transition ease-in transform hover:scale-110" />
+            <FaCheckCircle title="Completed?" className="text-[#D4C321] transition ease-in transform hover:scale-110" onClick={handleCompleted} />
           </button>
           <div className="w-full mx-2">
             <p>{task}</p>

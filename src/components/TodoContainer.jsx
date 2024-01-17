@@ -44,6 +44,7 @@ export default function TodoContainer(allTodos) {
       hideProgressBar: true,
     });
   };
+
   return (
     <>
       <div className="w-full p-6 rounded-md bg-[#303030]">
