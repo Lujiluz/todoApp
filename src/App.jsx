@@ -11,15 +11,6 @@ const getDataFromLocalStorage = () => {
   return [];
 };
 
-// reset data from local Storage
-// const resetDataFromLocalStorage = () => {
-//   let data = JSON.parse(localStorage.getItem('todolist'));
-//   if (data.length === 0) {
-//     localStorage.setItem('todolist', data);
-//     return [];
-//   }
-// };
-
 export default function App() {
   const [allTodos, setAllTodos] = useState(getDataFromLocalStorage);
 

@@ -3,7 +3,6 @@ import TodoItem from './TodoItem';
 import { toast } from 'react-toastify';
 
 export default function TodoContainer(allTodos) {
-  console.log(allTodos.allTodos.length);
   const handleClearAll = () => {
     toast.warn(
       <div className="text-center">
@@ -32,7 +31,6 @@ export default function TodoContainer(allTodos) {
 
   const handleYes = () => {
     localStorage.clear();
-    // setAllTodos.setAllTodos([]);
     location.reload();
   };
   const handleNo = () => {
@@ -63,7 +61,7 @@ export default function TodoContainer(allTodos) {
         </button>
         {allTodos.allTodos.length !== 0
           ? allTodos.allTodos.map((todo) => {
-              return <TodoItem key={todo.id} task={todo.task} />;
+              return <TodoItem key={todo.id} task={todo.task} id={todo.id} />;
             })
           : null}
       </div>
